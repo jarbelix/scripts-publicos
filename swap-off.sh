@@ -7,7 +7,6 @@ echo "Before - `date`"
 echo "========"
 free -h
 
-
 sync
 
 echo 3 > /proc/sys/vm/drop_caches
@@ -20,10 +19,10 @@ if [ $mem -lt $swap ]; then
         exit 1
 fi
 
-
-swapoff -a
-
-swapon -a
+if [ $swap -gt 0 ]; then
+	swapoff -a
+	swapon -a
+fi
 
 echo "========"
 echo "After - `date` "
